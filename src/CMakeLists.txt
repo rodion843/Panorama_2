@@ -4,6 +4,12 @@ option(CPP_STARTER_USE_GTKMM "Enable compilation of GTKMM sample" OFF)
 option(CPP_STARTER_USE_IMGUI "Enable compilation of ImGui sample" OFF)
 option(CPP_STARTER_USE_NANA "Enable compilation of Nana GUI sample" OFF)
 option(CPP_STARTER_USE_SDL "Enable compilation of SDL sample" OFF)
+option(CPP_STARTER_USE_Panorama "Enable Panorama" ON)
+# Panorama
+if(CPP_STARTER_USE_Panorama)
+  message("Using Panorama")
+  add_subdirectory(Panorama)
+endif()
 
 # sdl
 if(CPP_STARTER_USE_SDL)
