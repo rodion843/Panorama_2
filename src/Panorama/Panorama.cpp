@@ -19,12 +19,12 @@ void onMouse(int event, int x, int y, int, void *)
   case cv::MouseEventTypes::EVENT_LBUTTONDOWN:
     ImageGrabber = std::thread([&]() {
         imshowMutex.lock();
-        std::cout << "thread 2\n";
-        cv::Mat img = cv::imread("C:/Untitled.png");
-        Box = cv::selectROI("roi sel", img);
-        cv::Mat cropped = img(Box);
-        cropped.copyTo(img(cv::Rect(0, 300, Box.width, Box.height)));
+        auto copyofFrame = frame;
         imshowMutex.unlock();
+        std::cout << "thread 2\n";
+        Box = cv::selectROI("soruce", copyofFrame);
+        cv::Mat cropped = copyofFrame(Box);
+        cropped.copyTo(copyofFrame(cv::Rect(0, 300, Box.width, Box.height)));
     });
     break;
   }
